@@ -304,7 +304,33 @@ if(isset($_POST['submit']))
 
   <div class="container-fluid text-center" id="new">
       <div class="row">
-          <div class="col-sm-6 col-md-3 col-lg-3">
+          <?php
+            $query = "SELECT * from products";
+            $result = mysqli_query($con,$query)or die(mysql_error());
+            if(mysqli_num_rows($result) > 0)
+            {
+                while($row = mysqli_fetch_assoc($result)){
+?>
+                <div class="col-sm-6 col-md-3 col-lg-3">
+                        <a href="description.php?ID=<?php echo $row['PID']; ?>&category=new">
+                            <div class="book-block">
+                                <div class="tag">New</div>
+                                <div class="tag-side"><img src="Uploads/<?php echo $row['FileName']; ?>"></div>
+                                <img class="book block-center img-responsive" src="BSC-1.jpg">
+                                <hr>
+                                <?php echo $row['Title']; ?> <br>
+                                GHS <?php echo $row['Price']; ?> &nbsp
+                                <span style="text-decoration:line-through;color:#828282;"> <?php echo $row['page']; ?> </span>
+                                <span class="label label-warning">35%</span>
+                            </div>
+                            </a>
+                        </div>
+<?php
+                }
+            }
+            
+          ?>
+          <!-- <div class="col-sm-6 col-md-3 col-lg-3">
            <a href="description.php?ID=NEW-1&category=new">
               <div class="book-block">
                   <div class="tag">New</div>
@@ -317,49 +343,7 @@ if(isset($_POST['submit']))
                   <span class="label label-warning">35%</span>
               </div>
             </a>
-          </div>
-          <div class="col-sm-6 col-md-3 col-lg-3">
-           <a href="description.php?ID=NEW-2&category=new">
-              <div class="book-block">
-                  <div class="tag">New</div>
-                  <div class="tag-side"><img src="img/tag.png"></div>
-                  <img class="block-center img-responsive" src="SE-1.jpg">
-                  <hr>
-                 Software Engineering  <br>
-                  GHC 68 &nbsp
-                  <span style="text-decoration:line-through;color:#828282;"> 120 </span>
-                  <span class="label label-warning">43%</span>
-              </div>
-            </a>
-          </div>
-          <div class="col-sm-6 col-md-3 col-lg-3">
-           <a href="description.php?ID=img-22&category=new">
-              <div class="book-block">
-                  <div class="tag">New</div>
-                  <div class="tag-side"><img src="img/tag.png"></div>
-                  <img class="block-center img-responsive" src="img-23.jpg">
-                  <hr>
-                  A Lifetime Of Riches <br>
-                  GHC 88 &nbsp
-                  <span style="text-decoration:line-through;color:#828282;"> 595 </span>
-                  <span class="label label-warning">33%</span>
-              </div>
-            </a>
-          </div>
-          <div class="col-sm-6 col-md-3 col-lg-3">
-           <a href="description.php?ID=NEW-4&category=new">
-              <div class="book-block">
-                  <div class="tag">New</div>
-                  <div class="tag-side"><img src="img/tag.png"></div>
-                  <img class="block-center img-responsive" src="img-20.jpg">
-                  <hr>
-                  Napoleon Hills Golden Rules <br>
-                  GHC 100 &nbsp
-                  <span style="text-decoration:line-through;color:#828282;"> 435 </span>
-                  <span class="label label-warning">33%</span>
-              </div>
-            </a>
-          </div>
+          </div> -->
       </div>
   </div>
 
